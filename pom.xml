@@ -11,7 +11,7 @@
     <modules>
         <module>boot1</module>
         <module>boot2</module>
-        <module>springcloud1</module>
+        <module>cloud1</module>
     </modules>
 
     <parent>
