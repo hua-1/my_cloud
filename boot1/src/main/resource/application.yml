@@ -3,16 +3,21 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 server:
-  port: 10001
+  port: 10003
 spring:
   application:
     name: eurekaclient1
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/student?serverTimezone=GMT=&useUnicode=true&characterEncoding=utf-8&useSSL=true
-#    username: root
-#    password: root
-#    type: com.alibaba.druid.pool.DruidDataSource
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    druid:
+    #监控统计拦截的filters
+    filters: stat
+    driver-class-name: com.mysql.jdbc.Driver
+    #基本属性
+    url: jdbc:mysql://127.0.0.1:3306/mytest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: root
+    password: root
   redis:
     host: 127.0.0.1
     port: 6379
@@ -29,3 +34,24 @@ spring:
     port: 5672
     username: guest
     password: guest
+hystrix:
+  metrics:
+    enabled: true
+
+#filters:
+## 熔断降级配置
+#- name: Hystrix
+#  args:
+#    name : default
+#    fallbackUri: 'forward:/defaultfallback'
+#
+## hystrix 信号量隔离，3秒后自动超时
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 3000
+#  shareSecurityContext: true
